@@ -39,6 +39,15 @@ library(kableExtra)
 library(dplyr)
 ```
 
+```{r}
+library(ggplot2)
+ggplot(realCsv, aes(x = age_years, y = avg_price_brl)) +
+  geom_line(stat = "summary", fun.data = "mean_se", size = 0.6) +
+  geom_point(stat = "summary") +
+  geom_errorbar(stat = "summary", fun.data = "mean_se", width = 0.2) +
+  ylab("Preço") +
+  xlab("Idade")
+```
 
 ```{r}
 # Análise descritiva {.tabset .tabset-fade}
