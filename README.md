@@ -18,7 +18,7 @@ Para executar este código, será necessária a configuração do ambiente de pr
 
 - [Fernando Liu](https://github.com/Liu-Fernando)
 
-- [Bruno]()
+- [Bruno Friedrich](BrunoFriedrichRaquel)
 
 - [Yannis Pontushka](https://github.com/Yax1234566)
 
