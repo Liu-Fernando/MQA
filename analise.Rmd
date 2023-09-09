@@ -1,0 +1,101 @@
+---
+title: "R Notebook1"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Ente*
+
+```{r}
+csvSalary = read.csv("fipe_2022.csv")
+realCsv = csvSalary[,c("brand","engine_size","avg_price_brl","fuel","age_years")]
+```
+
+
+```{r}
+View(realCsv)
+```
+
+
+```{r}
+str(realCsv)
+```
+```{r}
+summary(realCsv)
+```
+install.packages("ggplot2")
+
+```{r}
+library(ggplot2)
+grafico_barras<-ggplot(realCsv,aes(x=fuel,y=avg_price_brl))+geom_bar(stat="identity",fill="blue")
+grafico_barras
+```
+
+```{r}
+install.packages("kableExtra")
+install.packages("dplyr")
+library(kableExtra)
+library(dplyr)
+```
+
+
+```{r}
+# Análise descritiva {.tabset .tabset-fade}
+
+## Médias e desvios
+
+
+
+{r, echo=FALSE}
+resumo <- dados %>% group_by(Genero, Alcool) %>%
+                    get_summary_stats(Memoria, type = "mean_sd")
+
+kable(resumo,
+      col.names = c("Gênero", "Álcool", "Variável", "n", "Média", "Desvio Padrão")) %>%
+  kable_styling(full_width = F, bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+```
+
+```{r}
+table(realCsv$avg_price_brl > 100000)
+```
+
+```{r}
+csvSalary$Salary[csvSalary$salary >= 9000000]
+```
+
+```{r}
+summary(csvSalary)
+```
+
+```{r}
+plot(Rating ~ salary, data = csvSalary, pch = "+", xlim = c(2112,3000000))
+```
+
+```{r}
+plot(Rating ~ Salary, data = csvSalary, pch = 16,col = rgb(0,0,0,0.3), xlim = c(50000,3000000))
+```
+
+```{r}
+salariosSemOut = csvSalary[csvSalary$Salary > 20000 && csvSalary$Salary < 3000000,]
+
+```
+
+```{r}
+plot(Rating ~ log(Salary), data = csvSalary, pch = 1)
+```
+
+```{r}
+table(csvSalary$Location)
+```
+
+```{r}
+table(csvSalary$Job.Roles)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
